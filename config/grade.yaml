@@ -4,7 +4,7 @@ version: 1.0.0
 package: "edu.illinois.cs.cs125.spring2019.mp0.lib"
 grading:
   timeout: PT5M
-  run: "docker run -m 1GB --cpus=1.0 --network none -v {{ gradeDir }}:/base cs125/mp0-spring2019-grader -Pgrade.capture -Pgrade.reporting.file=grade.json"
+  run: "docker run -m 512MB --cpus=1.0 --network none -v {{ gradeDir }}:/base cs125/mp0-spring2019-grader:0.2 -Pgrade.capture -Pgrade.reporting.file=grade.json"
   ignoreOutput:
     - "^WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted.*"
     - "^To honour the JVM settings for this build.*"
@@ -40,7 +40,7 @@ checkstyle:
   name: "checkstyle Tests"
   missing:
     score: 0
-    message: "checkstyle failed to run"
+    message: "checkstyle crashed due to a syntax error"
     name: "checkstyle"
   selectors:
     - selector: "count(//file/error) = 0"
