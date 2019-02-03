@@ -1,9 +1,13 @@
 apply plugin: 'java'
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 processTestResources {
     exclude '**/*.js'
 }
+gradle.projectsEvaluated {
+    build.finalizedBy(rootProject.tasks.copyFiles)
+}
+
 // vim: ts=4:sw=4:et:ft=groovy
